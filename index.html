@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>admin2</title>
+    <style>
+      html,
+      body,
+      #app {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      #loader-wrapper {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #409EFF;
+      }
+      #loader {
+        display: block;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        margin: -75px 0 0 -75px;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        border-radius: 50%;
+        -moz-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -webkit-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 2s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+      }
+      #loader::before{
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        border-radius: 50%;
+        -webkit-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -moz-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 3s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+      }
+      #loader::after{
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        border-radius: 50%;
+        border-top-color: #FFF;
+        -webkit-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -moz-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 1.5s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+      }
+      .load-title {
+        position: absolute;
+        top: 60%;
+        z-index: 9999999999999;
+        width: 100%;
+        /* font-family: 'Open Sans'; */
+        font-size: 19px;
+        color: #FFF;
+        line-height: 30px;
+        text-align: center;
+      }
+      .load-title span {
+        font-weight: normal;
+        font-style: italic;
+        font-size: 13px;
+        color: #FFF;
+        opacity: 0.5;
+      }
+      @keyframes spin {
+        from {
+          -webkit-transform: rotate(0deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);
+          /* IE 9 */
+          transform: rotate(0deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);
+          /* IE 9 */
+          transform: rotate(360deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+      }
+      @-webkit-keyframes spin {
+        from {
+          -webkit-transform: rotate(0deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);
+          /* IE 9 */
+          transform: rotate(0deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);
+          /* IE 9 */
+          transform: rotate(360deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="load-title">正在加载，请耐心等待...
+          <br/>
+          <!-- <span>V1.0</span> -->
+        </div>
+      </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
