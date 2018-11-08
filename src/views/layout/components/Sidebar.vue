@@ -1,53 +1,111 @@
 <template>
-  <el-menu class="el-menu-sidebar"
-           :collapse="isCollapse">
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span slot="title">导航一</span>
+  <div class="sidebar-wrapper">
+    <el-button type="text"
+               @click="isCollapse=!isCollapse">==></el-button>
+    <el-menu class="el-menu-sidebar"
+             background-color="#2f353a"
+             text-color="#fff"
+             active-text-color="#20A8D8"
+             :unique-opened="true"
+             :router="true"
+             :collapse="isCollapse"
+             :default-active="$route.matched[1].path">
+      <!-- :default-active="$route.path" -->
+      <template v-for="route in routes">
+        <el-submenu v-if="route.children && route.children.length > 0"
+                    :key="route.path"
+                    :index="route.path">
+          <template slot="title">
+            <i :class="route.meta.icon"></i>
+            <span>{{route.meta.title}}</span>
+          </template>
+          <el-menu-item v-for="item in route.children"
+                        :key="item.path"
+                        :index="`${route.path}/${item.path}`">{{item.meta.title}}</el-menu-item>
+        </el-submenu>
+        <el-menu-item :key="route.path"
+                      :index="route.path"
+                      v-else>
+          <i :class="route.meta.icon"></i>
+          <span slot="title">{{route.meta.title}}</span>
+        </el-menu-item>
       </template>
-      <el-menu-item-group>
-        <span slot="title">分组一</span>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <span slot="title">选项4</span>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <span slot="title">导航二</span>
-    </el-menu-item>
-    <el-menu-item index="3"
-                  disabled>
-      <i class="el-icon-document"></i>
-      <span slot="title">导航三</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <span slot="title">导航四</span>
-    </el-menu-item>
-  </el-menu>
+    </el-menu>
+  </div>
 </template>
 
 <script>
+// import { constantRouterMap } from '@/router';
 export default {
   name: 'Sidebar',
   data () {
     return {
-      isCollapse: true
+      isCollapse: false
+    }
+  },
+  created () {
+    // console.log(this.$router.options.routes)
+    // console.log(constantRouterMap)
+    // console.log(this.routes)
+  },
+  computed: {
+    routes () {
+      var res = []
+      this.$router.options.routes.forEach(item => {
+        if (!item.hidden) {
+          if (item.path === '/') {
+            res.push(item.children[0])
+          } else {
+            res.push(item)
+          }
+        }
+      })
+      return res
     }
   }
 }
 </script>
 
 <style>
-.el-menu-sidebar {
+.sidebar-wrapper {
   height: 100%;
+  background-color: #262a2e;
+  /* border-right: solid 1px #e6e6e6; */
+}
+.el-menu-sidebar {
+  border-right: 0 none;
+}
+.el-menu-sidebar:not(.el-menu--collapse) {
+  width: 200px;
+}
+.el-submenu .el-menu-item {
+  background: #262a2e !important;
+}
+
+/* 修改icon样式 */
+.el-submenu__title i:nth-child(1),
+.el-menu-item i {
+  color: #fff;
+}
+
+/* hover样式修改 */
+.el-submenu__title:hover,
+.el-menu-item:hover {
+  color: #fff !important;
+  background-color: #20a8d8 !important;
+}
+.el-submenu__title:hover i {
+  color: #fff !important;
+}
+
+/* 修改收起样式 */
+.el-menu--collapse {
+  width: 36px;
+}
+.el-menu--collapse .el-menu-item,
+.el-menu--collapse .el-tooltip,
+.el-menu--collapse .el-submenu__title {
+  padding: 0 !important;
+  text-align: center;
 }
 </style>

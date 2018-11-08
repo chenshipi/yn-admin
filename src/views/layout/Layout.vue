@@ -3,7 +3,7 @@
   <el-container>
     <el-header>Header</el-header>
     <el-container>
-      <el-aside>
+      <el-aside width="auto">
         <sidebar></sidebar>
       </el-aside>
       <el-main>
@@ -24,6 +24,14 @@ export default {
   components: {
     Sidebar,
     AppMain
+  },
+  mounted () {
+    console.log(this.$route)
+  },
+  watch: {
+    $route () {
+      console.log(this.$route)
+    }
   }
 }
 </script>
