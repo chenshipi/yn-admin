@@ -9,6 +9,7 @@ body {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  background-color: #eee;
   color: #333;
 }
 #app{
@@ -19,8 +20,23 @@ body {
 *:after {
   box-sizing: inherit;
 }
-div:focus {
-  outline: none;
+* {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  /*滚动条里面小方块*/
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #ccc;
+    opacity: 0.5;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #409eff
+  }
+  div:focus {
+    outline: none;
+  }
 }
 a,
 a:focus,

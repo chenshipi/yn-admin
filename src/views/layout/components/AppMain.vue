@@ -21,3 +21,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.app-main {
+  min-height: 100%;
+  /* height: 200%; */
+  background-color: #fff;
+}
+</style>

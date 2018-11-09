@@ -1,7 +1,5 @@
 <template>
   <div class="sidebar-wrapper">
-    <el-button type="text"
-               @click="isCollapse=!isCollapse">==></el-button>
     <el-menu class="el-menu-sidebar"
              background-color="#2f353a"
              text-color="#fff"
@@ -35,20 +33,18 @@
 </template>
 
 <script>
-// import { constantRouterMap } from '@/router';
+import { mapGetters } from 'vuex';
 export default {
   name: 'Sidebar',
   data () {
-    return {
-      isCollapse: false
-    }
+    return {}
   },
-  created () {
-    // console.log(this.$router.options.routes)
-    // console.log(constantRouterMap)
-    // console.log(this.routes)
-  },
+  created () {},
   computed: {
+    ...mapGetters(['sidebar']),
+    isCollapse () {
+      return !this.sidebar.opened
+    },
     routes () {
       var res = []
       this.$router.options.routes.forEach(item => {
@@ -61,6 +57,11 @@ export default {
         }
       })
       return res
+    }
+  },
+  methods: {
+    toggleSideBar () {
+      this.$store.dispatch('ToggleSideBar')
     }
   }
 }

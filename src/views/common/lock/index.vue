@@ -6,10 +6,10 @@
                 v-model="passwd"
                 @keyup.enter.native="handleLogin">
         <el-button slot="append"
-                   icon="el-icon-refresh"
+                   icon="icon-jiesuo"
                    @click="handleLogin"></el-button>
         <el-button slot="append"
-                   icon="el-icon-service"
+                   icon="icon-tuichu"
                    @click="handleLogout"></el-button>
       </el-input>
     </div>
@@ -17,38 +17,42 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  data() {
+  data () {
     return {
-      passwd: ""
-    };
+      passwd: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['lockPasswd'])
   },
   methods: {
-    handleLogin() {
-      if (this.passwd !== "123") {
-        this.passwd = "";
-        this.$message.error("解锁密码错误,请重新输入");
+    handleLogin () {
+      if (this.passwd !== this['lockPasswd']) {
+        this.passwd = '';
+        this.$message.error('解锁密码错误,请重新输入')
         return;
       }
       setTimeout(() => {
-        this.$router.push("/home");
-      }, 3000);
+        this.$router.push('/')
+      }, 1000)
     },
-    handleLogout() {
-      this.$confirm("是否退出系统, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+    handleLogout () {
+      this.$confirm('是否退出系统, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push('/login')
         })
         .catch(() => {
-          return false;
-        });
+          return false
+        })
     }
   }
-};
+}
 </script>
 
 <style>

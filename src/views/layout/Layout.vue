@@ -1,7 +1,9 @@
 <template>
   <!-- <div class="app-wrapper"> -->
   <el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <app-head></app-head>
+    </el-header>
     <el-container>
       <el-aside width="auto">
         <sidebar></sidebar>
@@ -18,10 +20,11 @@
 </template>
 
 <script>
-import { Sidebar, AppMain } from './components';
+import { AppHead, Sidebar, AppMain } from './components';
 export default {
   name: 'Layout',
   components: {
+    AppHead,
     Sidebar,
     AppMain
   },
@@ -39,7 +42,7 @@ export default {
 <style lang="scss">
 .el-header {
   border-bottom: 1px solid #eee;
-  background: #dcdfe6;
+  background: #fff;
 }
 .el-aside {
   background: #e4e7ed;

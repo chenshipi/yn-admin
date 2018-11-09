@@ -9,11 +9,12 @@ import BlankViews from '@/views'
 Vue.use(Router)
 
 export const constantRouterMap = [
-  // {
-  //   path: '/',
-  //   component: Layout,
-  //   redirect: '/home'
-  // },
+  {
+    path: '/',
+    component: Layout,
+    hidden: true,
+    redirect: '/marketing'
+  },
   {
     path: '/login',
     name: 'Login',
@@ -26,19 +27,19 @@ export const constantRouterMap = [
     hidden: true,
     component: () => import('@/views/common/lock')
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/home',
-    children: [
-      {
-        path: '/home',
-        name: 'Home',
-        meta: { title: '首页', icon: 'el-icon-mobile-phone' },
-        component: () => import('@/views/home/Home')
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/home',
+  //   children: [
+  //     {
+  //       path: '/home',
+  //       name: 'Home',
+  //       meta: { title: '首页', icon: 'el-icon-mobile-phone' },
+  //       component: () => import('@/views/home/Home')
+  //     }
+  //   ]
+  // },
   {
     path: '/marketing',
     component: Layout,
@@ -57,13 +58,13 @@ export const constantRouterMap = [
             component: () => import('@/views/marketing/answer/ActivityList')
           },
           {
-            path: 'add',
+            path: 'addActivity',
             meta: { title: '新建活动' },
-            redirect: 'add/addActivity',
+            redirect: 'addActivity/new',
             component: BlankViews,
             children: [
               {
-                path: 'addActivity',
+                path: 'new',
                 name: 'AddActivity',
                 component: () => import('@/views/marketing/answer/addActivity/AddActivity')
               },
@@ -102,7 +103,7 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
-  // mode: 'history', // 后端支持可开
+  mode: 'history', // 后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
