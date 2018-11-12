@@ -10,16 +10,16 @@
 
 <script>
 export default {
-  name: 'AppMain',
+  name: "AppMain",
   computed: {
-    include () {
-      return []
+    include() {
+      return [];
     },
-    key () {
-      return this.$route.fullPath
+    key() {
+      return this.$route.fullPath;
     }
   }
-}
+};
 </script>
 
 <style>

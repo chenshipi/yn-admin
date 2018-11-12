@@ -1,6 +1,9 @@
 <template>
   <!-- <div class="app-wrapper"> -->
-  <el-container>
+  <el-container :class="classObj">
+    <div v-if="device==='mobile'&&sidebar.opened"
+         class="drawer-bg"
+         @click="toggleSideBar"></div>
     <el-header>
       <app-head></app-head>
     </el-header>
@@ -22,18 +25,34 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { AppHead, Sidebar, AppMain } from "./components";
 import YnBreadcrumb from "@/components/yn-breadcrumb";
+import ResizeMixin from "./mixin/ResizeHandler";
 export default {
   name: "Layout",
+  mixins: [ResizeMixin],
   components: {
     AppHead,
     Sidebar,
     AppMain,
     YnBreadcrumb
   },
+  computed: {
+    ...mapGetters(["sidebar", "device"]),
+    classObj() {
+      return {
+        mobile: this.device === "mobile"
+      };
+    }
+  },
   mounted() {
-    // console.log(this.$route)
+    console.log(this.classObj);
+  },
+  methods: {
+    toggleSideBar() {
+      this.$store.dispatch("ToggleSideBar");
+    }
   },
   watch: {
     $route() {
@@ -60,6 +79,7 @@ export default {
   line-height: 32px;
   padding: 0 10px;
   background: #fff;
+  border-bottom: 1px solid #eee;
 }
 .main-conent {
   text-align: center;
@@ -68,5 +88,17 @@ export default {
   padding: 20px;
   overflow: auto;
   position: relative;
+}
+.mobile .main-conent {
+  padding: 0;
+}
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 990;
 }
 </style>

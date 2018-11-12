@@ -1,5 +1,6 @@
 <template>
-  <div class="sidebar-wrapper">
+  <div class="sidebar-wrapper"
+       :class="{collapse: isCollapse}">
     <el-menu class="el-menu-sidebar"
              background-color="#2f353a"
              text-color="#fff"
@@ -33,38 +34,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
-  name: 'Sidebar',
-  data () {
-    return {}
+  name: "Sidebar",
+  data() {
+    return {};
   },
-  created () {},
+  created() {},
   computed: {
-    ...mapGetters(['sidebar']),
-    isCollapse () {
-      return !this.sidebar.opened
+    ...mapGetters(["sidebar"]),
+    isCollapse() {
+      return !this.sidebar.opened;
     },
-    routes () {
-      var res = []
+    routes() {
+      var res = [];
       this.$router.options.routes.forEach(item => {
         if (!item.hidden) {
-          if (item.path === '/') {
-            res.push(item.children[0])
+          if (item.path === "/") {
+            res.push(item.children[0]);
           } else {
-            res.push(item)
+            res.push(item);
           }
         }
-      })
-      return res
+      });
+      return res;
     }
   },
   methods: {
-    toggleSideBar () {
-      this.$store.dispatch('ToggleSideBar')
+    toggleSideBar() {
+      this.$store.dispatch("ToggleSideBar");
     }
   }
-}
+};
 </script>
 
 <style>
@@ -108,5 +109,15 @@ export default {
 .el-menu--collapse .el-submenu__title {
   padding: 0 !important;
   text-align: center;
+}
+
+.mobile .sidebar-wrapper {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+}
+.mobile .sidebar-wrapper.collapse {
+  margin-left: -36px;
+  transition: margin-left 0.1s linear 0.28s;
 }
 </style>
