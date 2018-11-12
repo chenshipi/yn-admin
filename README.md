@@ -1,4 +1,4 @@
-# admin2
+# yn-admin
 
 > A Vue.js project
 

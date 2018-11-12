@@ -3,17 +3,10 @@
     <div class="yn-flex">
       <img src="../../../assets/logo.svg"
            alt="">
-      <i class="icon-caidan"
-         :class="{shrink:isCollapse}"
-         @click="toggleClick"></i>
+      <!-- 侧边栏按钮 -->
+      <yn-sidebar-switch></yn-sidebar-switch>
     </div>
     <div class="btns">
-      <!-- <el-button icon="icon-lvzhou_yuyanqiehuan"></el-button> -->
-      <!-- <el-button type="text"
-                 icon="icon-toggle-language"></el-button>
-      <el-button type="text"
-                 size=""
-                 icon="icon-tuichu"></el-button> -->
       <el-dropdown @command="handleCommand"
                    size="medium">
         <span class="el-dropdown-link">
@@ -24,12 +17,8 @@
           <el-dropdown-item command="en">English</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <!-- <el-tooltip effect="dark"
-                  content="锁屏"
-                  placement="bottom">
-        <i class="icon-suo"></i>
-      </el-tooltip> -->
-      <yn-top-lock></yn-top-lock>
+      <!-- 锁屏按钮 -->
+      <yn-lock-switch></yn-lock-switch>
       <el-tooltip effect="dark"
                   content="退出登录"
                   placement="bottom-end">
@@ -40,30 +29,29 @@
 </template>
 
 <script>
-import YnTopLock from '@/components/yn-top-lock';
-import { mapGetters } from 'vuex';
+import YnSidebarSwitch from "@/components/yn-sidebar-switch";
+import YnLockSwitch from "@/components/yn-lock-switch";
+import { mapGetters } from "vuex";
 export default {
-  name: 'AppHead',
+  name: "AppHead",
   components: {
-    YnTopLock
+    YnSidebarSwitch,
+    YnLockSwitch
   },
   computed: {
-    ...mapGetters(['sidebar']),
-    isCollapse () {
-      return !this.sidebar.opened
+    ...mapGetters(["sidebar"]),
+    isCollapse() {
+      return !this.sidebar.opened;
     }
   },
   methods: {
-    toggleClick () {
-      this.$store.dispatch('ToggleSideBar')
-    },
-    handleCommand (command) {
-      console.log(command)
+    handleCommand(command) {
+      console.log(command);
       // 这里调用store更改语言设置
       // this.$store.dispatch('setLanguage', command)
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -87,22 +75,6 @@ export default {
 
   .yn-flex {
     display: flex;
-  }
-  .icon-caidan {
-    cursor: pointer;
-    color: #909399;
-    font-size: 27px;
-    line-height: 60px;
-    // transform: rotate(0deg);
-    transition: transform 0.25s;
-  }
-  .shrink {
-    -webkit-transform: rotate(90deg);
-    /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: rotate(90deg);
-    /* IE 9 */
-    transform: rotate(90deg);
-    /* Firefox 16+, IE 10+, Opera */
   }
 }
 </style>

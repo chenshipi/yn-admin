@@ -4,6 +4,7 @@
                 content="锁屏"
                 placement="bottom">
       <i class="icon-suo"
+         :style="{'font-size':size+'px'}"
          @click="handleLock"></i>
     </el-tooltip>
     <el-dialog title="设置锁屏密码"
@@ -32,31 +33,34 @@
 <script>
 // import { mapGetters } from 'vuex';
 export default {
-  name: 'YnTopLock',
-  data () {
+  name: "YnLockSwitch",
+  props: {
+    size: String
+  },
+  data() {
     return {
       box: false,
       form: {
-        passwd: ''
+        passwd: ""
       }
-    }
+    };
   },
   computed: {
     // ...mapGetters(['lockPasswd'])
   },
   methods: {
-    handleLock () {
-      this.box = true
+    handleLock() {
+      this.box = true;
     },
-    handleSetLock () {
-      this.$refs['form'].validate(valid => {
+    handleSetLock() {
+      this.$refs["form"].validate(valid => {
         if (valid) {
-          this.$store.commit('SET_LOCK_PASSWD', this.form.passwd)
+          this.$store.commit("SET_LOCK_PASSWD", this.form.passwd);
           // this.handleLock()
-          this.$router.push({ path: '/lock' })
+          this.$router.push({ path: "/lock" });
         }
-      })
+      });
     }
   }
-}
+};
 </script>

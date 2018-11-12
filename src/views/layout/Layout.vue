@@ -9,7 +9,9 @@
         <sidebar></sidebar>
       </el-aside>
       <el-main>
-        <div class="main-top">面包屑位置</div>
+        <div class="main-top">
+          <yn-breadcrumb></yn-breadcrumb>
+        </div>
         <div class="main-conent">
           <app-main></app-main>
         </div>
@@ -20,26 +22,28 @@
 </template>
 
 <script>
-import { AppHead, Sidebar, AppMain } from './components';
+import { AppHead, Sidebar, AppMain } from "./components";
+import YnBreadcrumb from "@/components/yn-breadcrumb";
 export default {
-  name: 'Layout',
+  name: "Layout",
   components: {
     AppHead,
     Sidebar,
-    AppMain
+    AppMain,
+    YnBreadcrumb
   },
-  mounted () {
-    console.log(this.$route)
+  mounted() {
+    // console.log(this.$route)
   },
   watch: {
-    $route () {
-      console.log(this.$route)
+    $route() {
+      console.log(this.$route);
     }
   }
-}
+};
 </script>
 
-<style lang="scss">
+<style>
 .el-header {
   border-bottom: 1px solid #eee;
   background: #fff;
@@ -54,11 +58,12 @@ export default {
 .main-top {
   height: 32px;
   line-height: 32px;
-  background: #c0c4cc;
+  padding: 0 10px;
+  background: #fff;
 }
 .main-conent {
   text-align: center;
-  // height = 100vh - 60px - .main-conent上边元素的高度
+  /* height = 100vh - 60px - .main-conent上边元素的高度 */
   height: calc(100vh - 60px - 32px);
   padding: 20px;
   overflow: auto;
