@@ -104,6 +104,12 @@ export default {
   color: #fff !important;
 }
 
+/* 悬浮子菜单样式 */
+.el-menu--vertical .el-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+
 /* 修改收起样式 */
 .el-menu--collapse {
   width: 36px;
