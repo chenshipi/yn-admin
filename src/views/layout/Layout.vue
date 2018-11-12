@@ -46,9 +46,7 @@ export default {
       };
     }
   },
-  mounted() {
-    console.log(this.classObj);
-  },
+  mounted() {},
   methods: {
     toggleSideBar() {
       this.$store.dispatch("ToggleSideBar");
@@ -56,7 +54,7 @@ export default {
   },
   watch: {
     $route() {
-      console.log(this.$route);
+      // console.log(this.$route);
     }
   }
 };

@@ -28,7 +28,6 @@ export default {
           return item;
         }
       });
-      console.log(matched);
       this.levelList = matched;
     }
   },

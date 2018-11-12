@@ -7,6 +7,7 @@
              active-text-color="#20A8D8"
              :unique-opened="true"
              :router="true"
+             @select="selectChange"
              :collapse="isCollapse"
              :default-active="$route.matched[1].path">
       <!-- :default-active="$route.path" -->
@@ -42,7 +43,7 @@ export default {
   },
   created() {},
   computed: {
-    ...mapGetters(["sidebar"]),
+    ...mapGetters(["sidebar", "device"]),
     isCollapse() {
       return !this.sidebar.opened;
     },
@@ -63,6 +64,9 @@ export default {
   methods: {
     toggleSideBar() {
       this.$store.dispatch("ToggleSideBar");
+    },
+    selectChange() {
+      if (this.device === "mobile") this.toggleSideBar();
     }
   }
 };
