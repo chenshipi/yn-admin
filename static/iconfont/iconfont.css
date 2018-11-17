@@ -15,15 +15,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-[class^="icon"], 
-[class*=" icon"]/*这里有空格*/
- {
+/* [class^="icon"], 
+[class*=" icon"]这里有空格 */
+ /* {
   font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 .icon-caidan:before { content: "\e790"; }
 

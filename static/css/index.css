@@ -1,0 +1,48 @@
+/* *{padding: 0;margin: 0;} */
+/* 初始化样式 */
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{ margin: 0; padding: 0 }
+body{ font: 14px/1.2 "Helvetica Neue", "Helvetica", "Microsoft YaHei", "", "Arial", sans-serif; background: #eee; }
+a{ color: #000; text-decoration: none; }
+em{ font-style: normal; }
+li{ list-style: none; }
+img{ border:0; vertical-align: middle; }
+table{ border-collapse: collapse; border-spacing: 0; }
+p{ word-wrap: break-word; }
+
+/* 对齐方式 */
+.va-middle { vertical-align: middle; }
+.va-top { vertical-align: top; }
+
+/* 元素转换 */
+.inline-block { display: inline-block; }
+.inline{ display: inline; }
+.block{ display: block; }
+
+/* 文本对齐 */
+.text-left{ text-align: left; }
+.text-center{ text-align: center; }
+.text-right{ text-align: right; }
+
+/* 浮动 */
+.fl{ float: left; }
+.fr{ float: right; }
+
+/* 弹性盒 */
+.flex-wrapper{ display: flex; }
+.flex-wrapper .flex{ flex: 1; }
+
+/* 定位 */
+.relative{ position: relative; }
+.absolute{ position: absolute; }
+.fixed{ position: fixed; }
+
+/* 字体图标重定义 */
+[class^="icon"], 
+[class*=" icon"]/*这里有空格*/
+ {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

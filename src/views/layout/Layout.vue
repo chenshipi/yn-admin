@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { AppHead, Sidebar, AppMain } from "./components";
-import YnBreadcrumb from "@/components/yn-breadcrumb";
-import ResizeMixin from "./mixin/ResizeHandler";
+import { mapGetters } from 'vuex';
+import { AppHead, Sidebar, AppMain } from './components';
+import YnBreadcrumb from '@/components/yn-breadcrumb';
+import ResizeMixin from './mixin/ResizeHandler';
 export default {
-  name: "Layout",
+  name: 'Layout',
   mixins: [ResizeMixin],
   components: {
     AppHead,
@@ -39,21 +39,21 @@ export default {
     YnBreadcrumb
   },
   computed: {
-    ...mapGetters(["sidebar", "device"]),
-    classObj() {
+    ...mapGetters(['sidebar', 'device']),
+    classObj () {
       return {
-        mobile: this.device === "mobile"
+        mobile: this.device === 'mobile'
       };
     }
   },
-  mounted() {},
+  mounted () {},
   methods: {
-    toggleSideBar() {
-      this.$store.dispatch("ToggleSideBar");
+    toggleSideBar () {
+      this.$store.dispatch('ToggleSideBar');
     }
   },
   watch: {
-    $route() {
+    $route () {
       // console.log(this.$route);
     }
   }
@@ -73,16 +73,15 @@ export default {
   padding: 0;
 }
 .main-top {
-  height: 32px;
-  line-height: 32px;
+  height: 39px;
+  line-height: 39px;
   padding: 0 10px;
   background: #fff;
   border-bottom: 1px solid #eee;
 }
 .main-conent {
-  text-align: center;
   /* height = 100vh - 60px - .main-conent上边元素的高度 */
-  height: calc(100vh - 60px - 32px);
+  height: calc(100vh - 60px - 39px);
   padding: 20px;
   overflow: auto;
   position: relative;

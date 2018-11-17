@@ -10,21 +10,22 @@
 
 <script>
 export default {
-  name: "AppMain",
+  name: 'AppMain',
   computed: {
-    include() {
-      return [];
+    include () {
+      return []
     },
-    key() {
-      return this.$route.fullPath;
+    key () {
+      return this.$route.fullPath
     }
   }
-};
+}
 </script>
 
 <style>
 .app-main {
   min-height: 100%;
+  padding: 20px;
   /* height: 200%; */
   background-color: #fff;
 }

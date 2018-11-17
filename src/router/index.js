@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Layout from '@/views/layout/Layout.vue'
-import BlankViews from '@/views'
+import Layout from '@/views/layout/Layout.vue';
+import BlankViews from '@/views';
 
 // import Login from '@/views/login/Login'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export const constantRouterMap = [
   {
@@ -55,7 +55,7 @@ export const constantRouterMap = [
           {
             path: 'activityList',
             name: 'ActivityList',
-            component: () => import('@/views/marketing/answer/ActivityList')
+            component: () => import('@/views/marketing/ActivityList')
           },
           {
             path: 'addActivity',
@@ -66,15 +66,21 @@ export const constantRouterMap = [
               {
                 path: 'new',
                 name: 'AddActivity',
-                component: () => import('@/views/marketing/answer/addActivity/AddActivity')
+                component: () => import('@/views/marketing/AddActivity')
               },
               {
                 path: 'addTopic',
                 name: 'AddTopic',
                 meta: { title: '添加题目' },
-                component: () => import('@/views/marketing/answer/addActivity/AddTopic')
+                component: () => import('@/views/marketing/AddTopic')
               }
             ]
+          },
+          {
+            path: 'activityDetail',
+            name: 'ActivityDetail',
+            meta: { title: '活动详情' },
+            component: () => import('@/views/marketing/ActivityDetail')
           }
         ]
       }
@@ -100,10 +106,10 @@ export const constantRouterMap = [
       }
     ]
   }
-]
+];
 
 export default new Router({
   mode: 'history', // 后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
-})
+});

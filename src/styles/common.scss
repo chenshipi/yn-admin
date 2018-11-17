@@ -1,0 +1,20 @@
+// 公共样式定制
+// 浮动+margin
+.fr-m30 {
+  float: right;
+  margin: 30px;
+}
+
+// 返回按钮
+.return-btn {
+  position: fixed;
+  right: 20px;
+  top: 65px;   
+}
+
+//宽度设置
+.w-1 { width: 100%; }
+.w-100 { width: 100px; }
+.w-200 { width: 200px; }
+.w-300 { width: 300px; }
+.w-400 { width: 400px; }
