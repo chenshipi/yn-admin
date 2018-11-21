@@ -4,7 +4,7 @@
              :model="searchForm"
              inline>
       <el-form-item>
-        <el-select v-model='searchForm.activityTime'
+        <el-select v-model='searchForm.timeTpye'
                    size="small"
                    placeholder="请选择">
           <el-option v-for="item in answerTime"
@@ -31,8 +31,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input class=''
-                  v-model="searchForm.content"
+        <el-input v-model="searchForm.content"
+                  clearable
                   placeholder="请输入内容"
                   size="small"
                   style='width: 220px;'></el-input>
@@ -45,7 +45,8 @@
     <div class="fr">
       <el-button type="primary"
                  icon="el-icon-plus"
-                 @click="addActvty">新建活动</el-button>
+                 @click="addActvty"
+                 size="medium">新建活动</el-button>
     </div>
     <el-table :data="tableData"
               :header-cell-style="{background: '#eee'}">
@@ -73,15 +74,15 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination class="fr-m30"
+    <el-pagination class="right"
+                   layout="total, sizes, prev, pager, next, jumper"
                    background
                    :page-sizes="pageSizes"
                    :page-size="pageSize"
-                   layout="total, sizes, prev, pager, next, jumper"
+                   :total="totals"
+                   :current-page="page"
                    @size-change="handleSizeChange"
-                   @current-change="handleCurrentChange"
-                   :current-page="pageNumber"
-                   :total="totals">
+                   @current-change="handleCurrentChange">
     </el-pagination>
   </div>
 </template>
@@ -93,7 +94,7 @@ export default {
   data () {
     return {
       searchForm: {
-        activityTime: 0,
+        timeTpye: 0,
         time: '',
         activity: 0,
         content: ''
@@ -139,26 +140,39 @@ export default {
         }
       ],
       totals: 100,
-      pageNumber: 1
+      page: 1
     };
   },
   mounted () {
     // console.log(this.$data)
   },
   methods: {
-    handleSizeChange () {
-      console.log('1');
+    // 获取数据
+    getDataList () {
+      let data = {
+        timeTpye: this.searchForm.timeTpye
+      };
+      this.$http.getDataList(data).then(
+        res => {
+          console.log(res);
+        },
+        err => {
+          this.$messgae.error('网络异常请稍后尝试！');
+        }
+      );
     },
-    handleCurrentChange () {
-      console.log('2');
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`);
     },
     // 跳转详情
     getDetail (val) {
       console.log(val);
       this.$router.push({
         name: 'ActivityDetail',
-        query: { id: val.id },
-        params: { id: val.id }
+        query: { id: val.id }
       });
       // this.$router.push({
       //   path: `activityDetail/?id=${val.id}`

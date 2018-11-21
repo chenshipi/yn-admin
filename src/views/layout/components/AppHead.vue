@@ -1,14 +1,12 @@
 <template>
   <div class="app-head">
     <div class="yn-flex">
-      <img src="../../../assets/logo.svg"
-           alt="">
+      <img src="../../../assets/logo.svg" alt="">
       <!-- 侧边栏按钮 -->
       <yn-sidebar-switch></yn-sidebar-switch>
     </div>
     <div class="btns">
-      <el-dropdown @command="handleCommand"
-                   size="medium">
+      <el-dropdown @command="handleCommand" size="medium">
         <span class="el-dropdown-link">
           <i class="icon-zhongyingwenqiehuan"></i>
         </span>
@@ -19,9 +17,7 @@
       </el-dropdown>
       <!-- 锁屏按钮 -->
       <yn-lock-switch></yn-lock-switch>
-      <el-tooltip effect="dark"
-                  content="退出登录"
-                  placement="bottom-end">
+      <el-tooltip effect="dark" content="退出登录" placement="bottom-end">
         <i class="icon-tuichu"></i>
       </el-tooltip>
     </div>
@@ -29,23 +25,23 @@
 </template>
 
 <script>
-import YnSidebarSwitch from "@/components/yn-sidebar-switch";
-import YnLockSwitch from "@/components/yn-lock-switch";
-import { mapGetters } from "vuex";
+import YnSidebarSwitch from '@/components/yn-sidebar-switch';
+import YnLockSwitch from '@/components/yn-lock-switch';
+import { mapGetters } from 'vuex';
 export default {
-  name: "AppHead",
+  name: 'AppHead',
   components: {
     YnSidebarSwitch,
     YnLockSwitch
   },
   computed: {
-    ...mapGetters(["sidebar"]),
-    isCollapse() {
+    ...mapGetters(['sidebar']),
+    isCollapse () {
       return !this.sidebar.opened;
     }
   },
   methods: {
-    handleCommand(command) {
+    handleCommand (command) {
       console.log(command);
       // 这里调用store更改语言设置
       // this.$store.dispatch('setLanguage', command)

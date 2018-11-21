@@ -6,26 +6,26 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "YnSidebarSwitch",
+  name: 'YnSidebarSwitch',
   props: {
     icon: {
       type: String,
-      default: "icon-caidan"
+      default: 'icon-caidan'
     },
     size: String
   },
   computed: {
-    ...mapGetters(["sidebar"]),
-    isCollapse() {
+    ...mapGetters(['sidebar']),
+    isCollapse () {
       return !this.sidebar.opened;
     }
   },
   methods: {
-    toggleClick() {
-      this.$store.dispatch("ToggleSideBar");
+    toggleClick () {
+      this.$store.dispatch('ToggleSideBar');
     }
   }
 };

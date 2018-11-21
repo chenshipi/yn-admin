@@ -1,22 +1,13 @@
 <template>
   <div>
-    <el-button class="return-btn"
-               size="mini"
-               icon="el-icon-d-arrow-left"
-               @click="$router.go(-1)">返回协议管理列表</el-button>
+    <el-button class="return-btn" size="mini" icon="el-icon-d-arrow-left" @click="$router.go(-1)">返回协议管理列表</el-button>
     <div class="title">基本资料</div>
     <div class="clear">
-      <el-button class="fr w_100"
-                 size="mini"
-                 @click="edit">编 辑
+      <el-button class="fr w_100" size="mini" @click="edit">编 辑
       </el-button>
     </div>
     <div class="form_data">
-      <el-form ref="form"
-               size="mini"
-               :model="form"
-               label-width="110px"
-               label-position="left">
+      <el-form ref="form" size="mini" :model="form" label-width="110px" label-position="left">
         <!-- size="small"> -->
         <el-form-item label="活动名称：">
           <span>{{form.title}}</span>
@@ -34,15 +25,13 @@
         </el-form-item>
         <el-form-item label="活动题目：">
           <span>{{form.topic}}</span>
-          <el-button type="text"
-                     @click="examine">查看</el-button>
+          <el-button type="text" @click="examine">查看</el-button>
         </el-form-item>
         <el-row>
           <el-col :span="5">
             <el-form-item label="活动奖池：">
               <span>{{form.jackpot}}</span>
-              <el-button type="text"
-                         @click="dialogVisible = true">追加奖励</el-button>
+              <el-button type="text" @click="dialogVisible = true">追加奖励</el-button>
             </el-form-item>
           </el-col>
           <el-col :span="5">
@@ -50,8 +39,7 @@
           </el-col>
         </el-row>
         <el-form-item label="活动规则：">
-          <p v-for="(item,idx) in form.rule"
-             :key="idx">{{item}}</p>
+          <p v-for="(item,idx) in form.rule" :key="idx">{{item}}</p>
         </el-form-item>
         <el-row>
           <el-col :span="5">
@@ -84,16 +72,12 @@
             </el-col>
         </el-row> -->
     <div class="tabs">
-      <div v-for="(tab, idx) in tabs"
-           :key="idx">
-        <el-row class="tab"
-                :style="{background: tab.bg}">
-          <el-col :span="6"
-                  class="col_left">
+      <div v-for="(tab, idx) in tabs" :key="idx">
+        <el-row class="tab" :style="{background: tab.bg}">
+          <el-col :span="6" class="col_left">
             <i class="el-icon-share"></i>
           </el-col>
-          <el-col :span="18"
-                  class="col_right">
+          <el-col :span="18" class="col_right">
             <p class="tab_conent">{{tab.conent}}</p>
             <span>{{tab.text}}</span>
           </el-col>
@@ -111,36 +95,15 @@
         </el-col>
       </el-row>
     </div>
-    <el-table :data="tableData"
-              :header-cell-style="{background: '#eee'}">
-      <el-table-column label="用户名"
-                       prop="user"
-                       align="center"
-                       width="100"></el-table-column>
-      <el-table-column label="地区"
-                       prop="area"
-                       align="center"
-                       sortable></el-table-column>
-      <el-table-column label="正确题数"
-                       prop="true"
-                       align="center"
-                       sortable></el-table-column>
-      <el-table-column label="获得奖励数"
-                       prop="award"
-                       align="center"
-                       sortable></el-table-column>
-      <el-table-column label="获得时间"
-                       prop="time"
-                       align="center"
-                       sortable></el-table-column>
-      <el-table-column label="领取状态"
-                       prop="state"
-                       align="center"></el-table-column>
+    <el-table :data="tableData" :header-cell-style="{background: '#eee'}">
+      <el-table-column label="用户名" prop="user" align="center" width="100"></el-table-column>
+      <el-table-column label="地区" prop="area" align="center" sortable></el-table-column>
+      <el-table-column label="正确题数" prop="true" align="center" sortable></el-table-column>
+      <el-table-column label="获得奖励数" prop="award" align="center" sortable></el-table-column>
+      <el-table-column label="获得时间" prop="time" align="center" sortable></el-table-column>
+      <el-table-column label="领取状态" prop="state" align="center"></el-table-column>
     </el-table>
-    <el-dialog :visible.sync="dialogVisible"
-               :center="true"
-               :show-close="false"
-               width="600px">
+    <el-dialog :visible.sync="dialogVisible" :center="true" :show-close="false" width="600px">
       <span class="tips needed-item">如需追加奖励，必须先联系系统开发人员在程序上添加后才能生效，追加奖励在此仅作为记录及展示</span>
       <div class="dialog_form">
         <el-form ref="dialog_form">
@@ -148,21 +111,12 @@
             <span>{{form.jackpot}}</span>
           </el-form-item>
           <el-form-item label="追加奖励：">
-            <el-upload :file-list="fileList"
-                       action="https://jsonplaceholder.typicode.com/posts/"
-                       :on-exceed="handleExceed"
-                       :limit="1">
+            <el-upload :file-list="fileList" action="https://jsonplaceholder.typicode.com/posts/" :on-exceed="handleExceed" :limit="1">
               <el-button size="mini">点击上传</el-button>
-              <el-select v-model="value"
-                         style="width:100px;margin-left:180px;"
-                         size="mini">
-                <el-option v-for="item in currencyType"
-                           :key="item.value"
-                           :label="item.label"
-                           :value="item.value"></el-option>
+              <el-select v-model="value" style="width:100px;margin-left:180px;" size="mini">
+                <el-option v-for="item in currencyType" :key="item.value" :label="item.label" :value="item.value"></el-option>
               </el-select>
-              <div slot="tip"
-                   class="tips ml needed-item">追加奖励生效后，APP中的奖池数将增加</div>
+              <div slot="tip" class="tips ml needed-item">追加奖励生效后，APP中的奖池数将增加</div>
             </el-upload>
           </el-form-item>
           <el-form-item label="确定追加后活动奖池：">
@@ -170,14 +124,9 @@
           </el-form-item>
         </el-form>
       </div>
-      <span slot="footer"
-            class="dialog-footer">
-        <el-button type="primary"
-                   size="small"
-                   @click="dialogVisible = false">确定追加</el-button>
-        <el-button @click="dialogVisible = false"
-                   size="small"
-                   style="width: 80px;">取 消</el-button>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" size="small" @click="dialogVisible = false">确定追加</el-button>
+        <el-button @click="dialogVisible = false" size="small" style="width: 80px;">取 消</el-button>
       </span>
     </el-dialog>
   </div>
@@ -304,7 +253,7 @@ export default {
       console.log('==>>');
       this.$router.push({
         name: 'ExamineTopic',
-        id: this.$route.query.id
+        query: { id: this.$route.query.id }
       });
     },
     // 文件上传方法

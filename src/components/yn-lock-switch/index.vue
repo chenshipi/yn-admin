@@ -3,8 +3,8 @@
     <el-tooltip effect="dark"
                 content="锁屏"
                 placement="bottom">
-      <i class="icon-suo"
-         :style="{'font-size':size+'px'}"
+      <i :class="['yn-lock-switch', icon]"
+         :style="{'font-size':fontSize+'px'}"
          @click="handleLock"></i>
     </el-tooltip>
     <el-dialog title="设置锁屏密码"
@@ -18,13 +18,17 @@
                       prop="passwd"
                       :rules="[{ required: true, message: '锁屏密码不能为空'}]">
           <el-input v-model="form.passwd"
+                    type="password"
+                    :size="size"
+                    clearable
                     placeholder="请输入锁屏密码"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer"
             class="dialog-footer">
         <el-button type="primary"
-                   @click="handleSetLock">确 定</el-button>
+                   @click="handleSetLock"
+                   size="medium">确 定</el-button>
       </span>
     </el-dialog>
   </span>
@@ -33,15 +37,23 @@
 <script>
 // import { mapGetters } from 'vuex';
 export default {
-  name: "YnLockSwitch",
+  name: 'YnLockSwitch',
   props: {
-    size: String
+    icon: {
+      type: String,
+      default: 'icon-suo'
+    },
+    fontSize: String,
+    size: {
+      type: String,
+      default: 'small'
+    }
   },
-  data() {
+  data () {
     return {
       box: false,
       form: {
-        passwd: ""
+        passwd: ''
       }
     };
   },
@@ -49,18 +61,30 @@ export default {
     // ...mapGetters(['lockPasswd'])
   },
   methods: {
-    handleLock() {
+    handleLock () {
       this.box = true;
     },
-    handleSetLock() {
-      this.$refs["form"].validate(valid => {
+    handleSetLock () {
+      this.$refs['form'].validate(valid => {
         if (valid) {
-          this.$store.commit("SET_LOCK_PASSWD", this.form.passwd);
+          this.$store.commit('SET_LOCK_PASSWD', this.form.passwd);
           // this.handleLock()
-          this.$router.push({ path: "/lock" });
+          this.$router.push({ path: '/lock' });
         }
       });
+    }
+  },
+  watch: {
+    box (val, v2) {
+      // 清除校验状态
+      if (!val) this.$refs.form.resetFields();
     }
   }
 };
 </script>
+
+<style>
+.yn-lock-switch {
+  cursor: pointer;
+}
+</style>

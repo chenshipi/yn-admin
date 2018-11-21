@@ -1,6 +1,6 @@
 <template>
   <el-breadcrumb class="app-breadcrumb"
-                 separator-class="el-icon-arrow-right">
+                 :separator-class="separator">
     <!-- <transition> -->
     <el-breadcrumb-item v-for="(item, index) in levelList"
                         :key="index"
@@ -11,18 +11,20 @@
 
 <script>
 export default {
-  name: "YnBreadcrumb",
-  props: {},
-  data() {
+  name: 'YnBreadcrumb',
+  props: {
+    separator: String
+  },
+  data () {
     return {
       levelList: null
     };
   },
-  created() {
+  created () {
     this.getBreadcrumb();
   },
   methods: {
-    getBreadcrumb() {
+    getBreadcrumb () {
       let matched = this.$route.matched.filter(item => {
         if (item.meta && item.meta.title) {
           return item;
@@ -32,7 +34,7 @@ export default {
     }
   },
   watch: {
-    $route() {
+    $route () {
       this.getBreadcrumb();
     }
   }

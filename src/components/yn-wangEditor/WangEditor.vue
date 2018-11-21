@@ -1,6 +1,7 @@
 <template>
   <!-- <div> -->
-  <div id='editor' :style="{borderColor:borderColor}"></div>
+  <div id='editor'
+       :style="{borderColor:borderColor}"></div>
   <!-- </div> -->
 </template>
 
@@ -9,6 +10,14 @@ import E from 'wangeditor';
 export default {
   name: 'WangEditor',
   props: {
+    uploadUrl: {
+      type: String,
+      required: true
+    },
+    fileName: {
+      type: String,
+      default: 'file'
+    },
     content: '',
     borderColor: {
       type: String,
@@ -25,34 +34,16 @@ export default {
     // 显示上传图片
     // editor.customConfig.uploadImgShowBase64 = true;
     // 服务器地址
-    editor.customConfig.uploadImgServer = '/upload';
-    // 上传回调
-    // editor.customConfig.uploadImgHooks = {
-    //   before: function (xhr, editor, files) {
-    //     console.log(files);
-    //     let url = 'www.baidu.com';
-    //     // 调接口接收返回图片url
-    //     editor.txt.append('<img src=' + url + '>');
-    //   }
-    // };
-    // 上传回调
-    // let self = this;
+    editor.customConfig.uploadImgServer = this.uploadUrl;
+    // formData文件名
+    editor.customConfig.uploadFileName = this.fileName;
+    // 监听函数
     editor.customConfig.uploadImgHooks = {
-      before: function (xhr, editor, files) {
-        console.log('before', xhr, editor, files);
-        // console.log(files[0]);
-        // 调接口接收返回图片url
-        // let param = {
-        //   isThumb: 0
-        // };
-        // let formData = new FormData();
-        // formData.append('file', files[0]);
-        // self.$store
-        //   .dispatch('uploadImage', { params: param, data: formData })
-        //   .then(res => {
-        //     let url = res.data.url;
-        //     self.editor.txt.append('<img src=' + url + '>');
-        //   });
+      // 图片上传前
+      before: function (xhr, editor, files) {},
+      // 自定义插入图片
+      customInsert: function (insertImg, result, editor) {
+        insertImg(result.data.url);
       }
     };
     // 将图片大小限制为 3M

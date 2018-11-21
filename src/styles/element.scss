@@ -1,1 +1,9 @@
-// element-ui 样式覆盖
+/* element-ui 样式覆盖 */
+
+// 删除表格中text类型按钮padding，防止撑大表格行高
+.cell .el-button--text { padding: 0; }
+
+// 分页栏样式
+.el-pagination { margin: 30px 20px 0 15px }
+.el-pagination.right { text-align: right; }
+.el-pagination.center { text-align: center; }

@@ -50,36 +50,36 @@ export default {
   data () {
     var validateUserName = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入手机号'))
+        callback(new Error('请输入手机号'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     var validatepassword = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入登录密码'))
+        callback(new Error('请输入登录密码'));
       } else {
-        var plen = this.loginForm.pwd.length
+        var plen = this.loginForm.pwd.length;
         if (plen < 6 || plen > 18) {
-          callback(new Error('登录密码为6-18位'))
+          callback(new Error('登录密码为6-18位'));
         }
-        callback()
+        callback();
       }
-    }
+    };
     var validatestaticCode = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入验证码'))
+        callback(new Error('请输入验证码'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     var validateCode = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入短信验证码'))
+        callback(new Error('请输入短信验证码'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       loginForm: {
         username: '15061571315',
@@ -96,7 +96,7 @@ export default {
       msgText: '获取验证码',
       msgTime: 60,
       msgKey: false
-    }
+    };
   },
   computed: {
     ...mapGetters(['device']),
@@ -106,16 +106,16 @@ export default {
   },
   methods: {
     handleSend () {
-      if (this.msgKey) return
-      this.msgKey = true
+      if (this.msgKey) return;
+      this.msgKey = true;
       const time = setInterval(() => {
-        this.msgTime--
+        this.msgTime--;
         if (this.msgTime === 0) {
-          this.msgKey = false
-          this.msgTime = 60
-          clearInterval(time)
+          this.msgKey = false;
+          this.msgTime = 60;
+          clearInterval(time);
         }
-      }, 1000)
+      }, 1000);
     },
     login () {
       this.$refs.loginForm.validate(value => {
@@ -130,8 +130,8 @@ export default {
               searchKeyWordValue: ''
             })
             .then(res => {
-              console.log(res)
-            })
+              console.log(res);
+            });
           // alert("submit!");
         } else {
           // console.log("error submit!!");
@@ -144,12 +144,12 @@ export default {
               searchKeyWordType: 0,
               searchKeyWordValue: ''
             })
-            .then(res => {})
+            .then(res => {});
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style>
@@ -174,10 +174,12 @@ export default {
   transform: translateY(-50%);
 }
 .login-form h4 {
+  font-size: 20px;
+  padding-bottom: 15px;
   color: #409eff;
   text-align: center;
   margin-top: 0;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
 }
 .msg-text {
   width: 112px;

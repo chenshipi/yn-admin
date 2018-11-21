@@ -77,10 +77,23 @@ export const constantRouterMap = [
             ]
           },
           {
-            path: 'activityDetail',
-            name: 'ActivityDetail',
+            path: 'detail',
             meta: { title: '活动详情' },
-            component: () => import('@/views/marketing/ActivityDetail')
+            redirect: 'detail/activityDetail',
+            component: BlankViews,
+            children: [
+              {
+                path: 'activityDetail',
+                name: 'ActivityDetail',
+                component: () => import('@/views/marketing/ActivityDetail')
+              },
+              {
+                path: 'examineTopic',
+                name: 'ExamineTopic',
+                meta: { title: '查看题目' },
+                component: () => import('@/views/marketing/ExamineTopic')
+              }
+            ]
           }
         ]
       }
